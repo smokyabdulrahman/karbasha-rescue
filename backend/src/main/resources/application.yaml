@@ -1,0 +1,36 @@
+server:
+  port: 8099
+debug: true
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/karbasha_rescue
+    username: postgres
+    password: password
+  jpa:
+    database: POSTGRESQL
+    showSql: true
+    generateDdl: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        ddlAuto: validate
+        jdbc:
+          lob:
+            non_contextual_creation: true
+keycloak:
+  principal-attribute: preferred_username
+  auth-server-url: http://localhost:8088/auth
+  realm: Karbasha
+  resource: karbasha-rescue
+  public-client: true
+#  security-constraints:
+#    - authRoles:
+#        - user
+#      securityCollections:
+#        - patterns:
+#            - /customers/*
