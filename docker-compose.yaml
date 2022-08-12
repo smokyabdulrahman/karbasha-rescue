@@ -3,8 +3,21 @@ version: '3'
 volumes:
   postgres_data:
       driver: local
+  pgadmin-data:
+      driver: local
 
 services:
+  pgadmin:
+      image: dpage/pgadmin4
+      restart: always
+      environment:
+        PGADMIN_DEFAULT_EMAIL: user@admin.me
+        PGADMIN_DEFAULT_PASSWORD: secret
+        PGADMIN_LISTEN_PORT: 80
+      ports:
+        - "8999:80"
+      volumes:
+        - pgadmin-data:/var/lib/pgadmin
   postgres:
       image: postgres
       volumes:
@@ -13,6 +26,10 @@ services:
         POSTGRES_DB: keycloak
         POSTGRES_USER: keycloak
         POSTGRES_PASSWORD: password
+        PGDATA: /var/lib/postgresql/data
+        POSTGRES_HOST_AUTH_METHOD: trust
+      ports:
+        - "5433:5432"
   keycloak:
       image: quay.io/keycloak/keycloak:legacy
       environment:

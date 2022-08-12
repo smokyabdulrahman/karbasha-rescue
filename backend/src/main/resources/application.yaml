@@ -1,5 +1,5 @@
 server:
-  port: 8099
+  port: 8022
 debug: true
 spring:
   main:
@@ -8,8 +8,8 @@ spring:
     property-naming-strategy: SNAKE_CASE
   datasource:
     platform: postgres
-    url: jdbc:postgresql://localhost:5432/karbasha_rescue
-    username: postgres
+    url: jdbc:postgresql://localhost:5433/karbasha_rescue
+    username: keycloak
     password: password
   jpa:
     database: POSTGRESQL
@@ -28,6 +28,10 @@ keycloak:
   realm: Karbasha
   resource: karbasha-rescue
   public-client: true
+flyway:
+  user: ${spring.datasource.username}
+  password: ${spring.datasource.password}
+  schemas: karbasha_rescue
 #  security-constraints:
 #    - authRoles:
 #        - user
