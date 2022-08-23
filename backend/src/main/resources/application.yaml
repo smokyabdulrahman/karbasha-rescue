@@ -7,7 +7,6 @@ spring:
   jackson:
     property-naming-strategy: SNAKE_CASE
   datasource:
-    platform: postgres
     url: jdbc:postgresql://localhost:5433/karbasha_rescue
     username: keycloak
     password: password
@@ -22,6 +21,9 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
+  sql:
+    init:
+      platform: postgres
 keycloak:
   principal-attribute: preferred_username
   auth-server-url: http://localhost:8088/auth

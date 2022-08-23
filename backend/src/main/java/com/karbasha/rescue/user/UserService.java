@@ -23,7 +23,7 @@ class UserService {
             return getUser(username);
         } catch (EntityNotFoundException e) {
             return createAuthenticatedUser(token);
-        } catch (Exception e){
+        } catch (Exception e) {
             return UserProfileResponse.builder()
                     .meaningfulError(MeaningfulError.of(ErrorType.FAILURE))
                     .build();
@@ -40,9 +40,9 @@ class UserService {
 
     private UserProfileResponse createAuthenticatedUser(AccessToken token) {
         var user = userRepository.save(UserProfile.builder()
-                        .username(token.getPreferredUsername())
-                        .email(token.getEmail())
-                        .name(token.getName())
+                .username(token.getPreferredUsername())
+                .email(token.getEmail())
+                .name(token.getName())
                 .build());
 
         return UserProfileResponse.builder()
