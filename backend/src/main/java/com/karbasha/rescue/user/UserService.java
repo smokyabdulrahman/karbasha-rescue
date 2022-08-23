@@ -7,9 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.keycloak.representations.AccessToken;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ObjectUtils;
 
-import javax.persistence.EntityNotFoundException;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,9 +19,12 @@ class UserService {
     @Transactional
     public UserProfileResponse getUserOrCreate(String username, AccessToken token) {
         try {
-            return getUser(username);
-        } catch (EntityNotFoundException e) {
-            return createAuthenticatedUser(token);
+            return userRepository.findById(username)
+                    .or(() -> Optional.of(createAuthenticatedUser(token)))
+                    .map(userProfile -> UserProfileResponse.builder()
+                            .user(userProfile)
+                            .build())
+                    .orElseThrow();
         } catch (Exception e){
             return UserProfileResponse.builder()
                     .meaningfulError(MeaningfulError.of(ErrorType.FAILURE))
@@ -30,23 +32,12 @@ class UserService {
         }
     }
 
-    private UserProfileResponse getUser(String id) {
-        var userProfile = userRepository.getReferenceById(id);
+    private UserProfile createAuthenticatedUser(AccessToken token) {
+        var userProfile = new UserProfile();
+        userProfile.setUsername(token.getPreferredUsername());
+        userProfile.setEmail(token.getEmail());
+        userProfile.setName(token.getName());
 
-        return UserProfileResponse.builder()
-                .user(userProfile)
-                .build();
-    }
-
-    private UserProfileResponse createAuthenticatedUser(AccessToken token) {
-        var user = userRepository.save(UserProfile.builder()
-                        .username(token.getPreferredUsername())
-                        .email(token.getEmail())
-                        .name(token.getName())
-                .build());
-
-        return UserProfileResponse.builder()
-                .user(user)
-                .build();
+        return userRepository.save(userProfile);
     }
 }
