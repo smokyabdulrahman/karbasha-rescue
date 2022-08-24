@@ -1,5 +1,7 @@
+DROP TABLE IF EXISTS user_profile;
 CREATE TABLE IF NOT EXISTS user_profile (
-    username VARCHAR (100) PRIMARY KEY,
+    id uuid PRIMARY KEY,
+    username VARCHAR (100) UNIQUE NOT NULL,
     name VARCHAR ( 150 ) NOT NULL,
     age smallint,
     email VARCHAR ( 255 ) UNIQUE NOT NULL,
