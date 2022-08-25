@@ -18,4 +18,16 @@ public class PetService {
     public Pet getPetById(UUID id) {
         return petRepository.getReferenceById(id);
     }
+
+    public Pet create(Pet pet) {
+        return petRepository.save(pet);
+    }
+
+    public Pet update(Pet pet) {
+        return petRepository.save(pet);
+    }
+
+    public void delete(UUID id) {
+        petRepository.deleteById(id);
+    }
 }
