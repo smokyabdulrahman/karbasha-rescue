@@ -17,27 +17,28 @@ public class PetController {
 
     private final PetService petService;
 
-    private List<Pet> getAll() {
+    @GetMapping()
+    public List<Pet> getAll() {
         return petService.getAll();
     }
 
     @GetMapping("/{id}")
-    private Pet get(@PathVariable("id") UUID id) {
+    public Pet get(@PathVariable("id") UUID id) {
         return petService.getPetById(id);
     }
 
     @PostMapping
-    private Pet create(@Dto(PetCreateDto.class) Pet pet) {
+    public Pet create(@Dto(PetCreateDto.class) Pet pet) {
         return petService.create(pet);
     }
 
     @PutMapping
-    private Pet update(@Dto(PetUpdateDto.class) Pet pet) {
+    public Pet update(@Dto(PetUpdateDto.class) Pet pet) {
         return petService.update(pet);
     }
 
     @DeleteMapping("/{id}")
-    private void delete(@PathVariable("id") UUID id) {
+    public void delete(@PathVariable("id") UUID id) {
         petService.delete(id);
     }
 }
