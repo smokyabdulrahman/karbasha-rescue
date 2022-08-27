@@ -1,4 +1,4 @@
-package com.karbasha.rescue.user.dto;
+package com.karbasha.rescue.dtos.user;
 
 import com.karbasha.rescue.common.dto.AdditionalStatus;
 import lombok.EqualsAndHashCode;

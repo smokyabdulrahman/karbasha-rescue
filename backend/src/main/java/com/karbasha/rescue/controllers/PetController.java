@@ -1,7 +1,9 @@
-package com.karbasha.rescue.pet;
+package com.karbasha.rescue.controllers;
 
-import com.karbasha.rescue.pet.dto.PetCreateDto;
-import com.karbasha.rescue.pet.dto.PetUpdateDto;
+import com.karbasha.rescue.data.entities.pet.*;
+import com.karbasha.rescue.dtos.pet.PetCreateDto;
+import com.karbasha.rescue.dtos.pet.PetUpdateDto;
+import com.karbasha.rescue.services.*;
 import com.karbasha.rescue.util.Dto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

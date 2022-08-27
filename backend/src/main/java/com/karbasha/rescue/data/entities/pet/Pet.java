@@ -1,7 +1,8 @@
-package com.karbasha.rescue.pet;
+package com.karbasha.rescue.data.entities.pet;
 
 import com.karbasha.rescue.common.model.Audit;
-import com.karbasha.rescue.user.UserProfile;
+import com.karbasha.rescue.data.entities.*;
+import com.karbasha.rescue.data.entities.user.UserProfile;
 import com.vladmihalcea.hibernate.type.basic.*;
 import lombok.*;
 import org.hibernate.annotations.*;

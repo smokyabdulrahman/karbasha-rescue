@@ -1,7 +1,7 @@
-package com.karbasha.rescue.user;
+package com.karbasha.rescue.data.entities.user;
 
 import com.karbasha.rescue.common.model.Audit;
-import com.karbasha.rescue.pet.Pet;
+import com.karbasha.rescue.data.entities.pet.Pet;
 import lombok.*;
 
 import javax.persistence.*;

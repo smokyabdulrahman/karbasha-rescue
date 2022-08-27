@@ -1,4 +1,4 @@
-package com.karbasha.rescue.post;
+package com.karbasha.rescue.data.entities.post;
 
 public enum PostType {
     ADOPTION,

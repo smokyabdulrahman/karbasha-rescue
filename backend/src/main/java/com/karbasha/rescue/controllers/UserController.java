@@ -1,6 +1,7 @@
-package com.karbasha.rescue.user;
+package com.karbasha.rescue.controllers;
 
-import com.karbasha.rescue.user.dto.UserProfileResponse;
+import com.karbasha.rescue.services.*;
+import com.karbasha.rescue.dtos.user.UserProfileResponse;
 import lombok.RequiredArgsConstructor;
 import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.springframework.security.access.prepost.PreAuthorize;

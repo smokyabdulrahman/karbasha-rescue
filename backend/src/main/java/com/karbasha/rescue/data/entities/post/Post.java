@@ -1,7 +1,7 @@
-package com.karbasha.rescue.post;
+package com.karbasha.rescue.data.entities.post;
 
-import com.karbasha.rescue.pet.*;
-import com.karbasha.rescue.user.*;
+import com.karbasha.rescue.data.entities.pet.*;
+import com.karbasha.rescue.data.entities.user.*;
 import com.vladmihalcea.hibernate.type.basic.*;
 import lombok.*;
 import org.hibernate.annotations.*;

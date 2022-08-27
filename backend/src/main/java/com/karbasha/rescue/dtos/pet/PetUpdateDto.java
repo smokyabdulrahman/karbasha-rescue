@@ -1,6 +1,6 @@
-package com.karbasha.rescue.pet.dto;
+package com.karbasha.rescue.dtos.pet;
 
-import com.karbasha.rescue.pet.Gender;
+import com.karbasha.rescue.data.entities.Gender;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,11 +9,10 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class PetCreateDto {
+public class PetUpdateDto {
     @NotNull
+    UUID id;
     String name;
-    @NotNull
-    UUID ownerId;
     Integer age;
     Gender gender;
     String picture;

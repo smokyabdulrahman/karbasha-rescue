@@ -1,19 +1,21 @@
-package com.karbasha.rescue.user;
+package com.karbasha.rescue.services;
 
 import com.karbasha.rescue.common.dto.ErrorType;
 import com.karbasha.rescue.common.dto.MeaningfulError;
-import com.karbasha.rescue.pet.dto.*;
-import com.karbasha.rescue.user.dto.*;
+import com.karbasha.rescue.data.*;
+import com.karbasha.rescue.data.entities.user.*;
+import com.karbasha.rescue.dtos.pet.*;
+import com.karbasha.rescue.dtos.user.*;
 import lombok.RequiredArgsConstructor;
 import org.keycloak.representations.AccessToken;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
-class UserService {
+public class UserService {
 
     private final UserRepository userRepository;
 
@@ -31,6 +33,11 @@ class UserService {
                     .meaningfulError(MeaningfulError.of(ErrorType.FAILURE))
                     .build();
         }
+    }
+
+    @Transactional
+    public boolean isUserExist(UUID userId) {
+        return userRepository.existsById(userId);
     }
 
     private UserProfile createAuthenticatedUser(AccessToken token) {

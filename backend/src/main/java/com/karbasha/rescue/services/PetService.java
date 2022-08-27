@@ -1,5 +1,7 @@
-package com.karbasha.rescue.pet;
+package com.karbasha.rescue.services;
 
+import com.karbasha.rescue.data.*;
+import com.karbasha.rescue.data.entities.pet.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,8 @@
-package com.karbasha.rescue.post;
+package com.karbasha.rescue.services;
 
-import com.karbasha.rescue.post.dto.*;
+import com.karbasha.rescue.data.*;
+import com.karbasha.rescue.data.entities.post.*;
+import com.karbasha.rescue.dtos.post.*;
 import lombok.*;
 import org.springframework.stereotype.*;
 
@@ -11,6 +13,7 @@ import java.util.*;
 public class PostService {
 
     private final PostRepository postRepository;
+    private final UserService userService;
 
     public PostResponse getPostById(UUID id) {
         return postRepository.findById(id)
@@ -20,13 +23,11 @@ public class PostService {
                 .orElseThrow();
     }
 
-    public PostResponse create(CreatePostRequest createPostRequest) {
-        var post = postRepository.save(Post.builder()
-                        .description(createPostRequest.getDescription())
-                .build());
+    public PostResponse create(Post post) {
+        var createdPost = postRepository.save(post);
 
         return PostResponse.builder()
-                .post(post)
+                .post(createdPost)
                 .build();
     }
 }

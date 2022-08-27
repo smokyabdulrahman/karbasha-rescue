@@ -1,4 +1,4 @@
-package com.karbasha.rescue.post.dto;
+package com.karbasha.rescue.dtos.post;
 
 import lombok.*;
 
@@ -7,7 +7,7 @@ import java.util.*;
 
 @Builder
 @Value
-public class CreatePostRequest {
+public class CreatePostDto {
     UUID userId;
     UUID petId;
     String title;

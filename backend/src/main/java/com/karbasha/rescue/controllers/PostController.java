@@ -1,6 +1,9 @@
-package com.karbasha.rescue.post;
+package com.karbasha.rescue.controllers;
 
-import com.karbasha.rescue.post.dto.*;
+import com.karbasha.rescue.data.entities.post.*;
+import com.karbasha.rescue.dtos.post.*;
+import com.karbasha.rescue.services.*;
+import com.karbasha.rescue.util.*;
 import lombok.*;
 import org.springframework.security.access.prepost.*;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +25,7 @@ public class PostController {
     }
 
     @PostMapping
-    public PostResponse create(CreatePostRequest createPostRequest) {
-        return postService.create(createPostRequest);
+    public PostResponse create(@Dto(CreatePostDto.class) Post post) {
+        return postService.create(post);
     }
 }

@@ -1,6 +1,6 @@
-package com.karbasha.rescue.user.dto;
+package com.karbasha.rescue.dtos.user;
 
-import com.karbasha.rescue.pet.dto.*;
+import com.karbasha.rescue.dtos.pet.*;
 import lombok.*;
 
 import java.math.*;
