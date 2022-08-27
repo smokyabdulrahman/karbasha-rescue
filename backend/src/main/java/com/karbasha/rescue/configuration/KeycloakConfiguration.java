@@ -1,4 +1,4 @@
-package com.karbasha.rescue;
+package com.karbasha.rescue.configuration;
 
 import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
 import org.springframework.context.annotation.Bean;
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 public class KeycloakConfiguration {
 
     @Bean
-    public KeycloakSpringBootConfigResolver KeycloakConfigResolver() {
+    public KeycloakSpringBootConfigResolver keycloakConfigResolver() {
         return new KeycloakSpringBootConfigResolver();
     }
 }

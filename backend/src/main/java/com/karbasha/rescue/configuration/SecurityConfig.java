@@ -1,4 +1,4 @@
-package com.karbasha.rescue;
+package com.karbasha.rescue.configuration;
 
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration;
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
@@ -18,7 +18,7 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    public void configureGlobal(AuthenticationManagerBuilder auth) {
         var keycloakAuthenticationProvider = keycloakAuthenticationProvider();
         // adding proper authority mapper for prefixing role with "ROLE_"
         keycloakAuthenticationProvider.setGrantedAuthoritiesMapper(new SimpleAuthorityMapper());

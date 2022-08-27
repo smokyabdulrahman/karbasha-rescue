@@ -1,4 +1,4 @@
-package com.karbasha.rescue;
+package com.karbasha.rescue.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.karbasha.rescue.util.DtoModelMapper;
