@@ -7,9 +7,9 @@ import lombok.*;
 import org.hibernate.annotations.*;
 import org.hibernate.validator.constraints.*;
 
-import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.*;
 import java.net.URL;
 import java.util.*;
 
@@ -22,6 +22,7 @@ import java.util.*;
 @TypeDef(name = "post_type", typeClass = PostgreSQLEnumType.class)
 public class Post {
     @Id
+    @Builder.Default
     UUID id = UUID.randomUUID();
 
     @Enumerated(EnumType.STRING)
@@ -34,14 +35,12 @@ public class Post {
     @Length(max = 600)
     String description;
 
-    UUID petId;
     @OneToOne
-    @JoinColumn(name = "petId")
+    @JoinColumn(name = "pet_id")
     Pet pet;
 
-    UUID userId;
     @OneToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_id")
     UserProfile user;
 
     @Length(max = 65)

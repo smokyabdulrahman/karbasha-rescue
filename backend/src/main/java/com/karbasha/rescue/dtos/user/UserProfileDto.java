@@ -1,6 +1,6 @@
 package com.karbasha.rescue.dtos.user;
 
-import com.karbasha.rescue.dtos.pet.*;
+import com.karbasha.rescue.data.entities.pet.*;
 import lombok.*;
 
 import java.math.*;
@@ -19,5 +19,5 @@ public class UserProfileDto {
     String city;
     boolean hasKids;
     BigDecimal monthlyIncome;
-    List<PetDto> pets;
+    List<Pet> pets;
 }

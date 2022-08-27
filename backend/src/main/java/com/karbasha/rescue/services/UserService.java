@@ -3,8 +3,8 @@ package com.karbasha.rescue.services;
 import com.karbasha.rescue.common.dto.ErrorType;
 import com.karbasha.rescue.common.dto.MeaningfulError;
 import com.karbasha.rescue.data.*;
+import com.karbasha.rescue.data.entities.pet.*;
 import com.karbasha.rescue.data.entities.user.*;
-import com.karbasha.rescue.dtos.pet.*;
 import com.karbasha.rescue.dtos.user.*;
 import lombok.RequiredArgsConstructor;
 import org.keycloak.representations.AccessToken;
@@ -18,6 +18,7 @@ import java.util.*;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PetRepository petRepository;
 
     @Transactional
     public UserProfileResponse getUserOrCreate(String username, AccessToken token) {
@@ -35,11 +36,6 @@ public class UserService {
         }
     }
 
-    @Transactional
-    public boolean isUserExist(UUID userId) {
-        return userRepository.existsById(userId);
-    }
-
     private UserProfile createAuthenticatedUser(AccessToken token) {
         var userProfile = UserProfile.builder()
                 .username(token.getPreferredUsername())
@@ -51,6 +47,7 @@ public class UserService {
     }
 
     private UserProfileDto mapToUserProfileDto(UserProfile userProfile) {
+        var pets = getPetsByOwnerId(userProfile.getId());
         return UserProfileDto.builder()
                 .id(userProfile.getId())
                 .username(userProfile.getUsername())
@@ -59,21 +56,12 @@ public class UserService {
                 .age(userProfile.getAge())
                 .hasKids(userProfile.isHasKids())
                 .monthlyIncome(userProfile.getMonthlyIncome())
-                .pets(userProfile.getPets().stream()
-                        .map(p -> PetDto.builder()
-                                .id(p.getId())
-                                .name(p.getName())
-                                .age(p.getAge())
-                                .country(p.getCountry())
-                                .city(p.getCity())
-                                .gender(p.getGender())
-                                .healthCondition(p.getHealthCondition())
-                                .neutered(p.getNeutered())
-                                .picture(p.getPicture())
-                                .vaccinated(p.getVaccinated())
-                                .personalityDescription(p.getPersonalityDescription())
-                        .build())
-                        .toList())
+                .pets(pets)
                 .build();
     }
+
+    private List<Pet> getPetsByOwnerId(UUID ownerId) {
+        return petRepository.findAllByOwnerId(ownerId);
+    }
+
 }

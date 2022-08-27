@@ -1,10 +1,9 @@
 package com.karbasha.rescue.controllers;
 
-import com.karbasha.rescue.data.entities.post.*;
 import com.karbasha.rescue.dtos.post.*;
 import com.karbasha.rescue.services.*;
-import com.karbasha.rescue.util.*;
 import lombok.*;
+import org.springframework.http.*;
 import org.springframework.security.access.prepost.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,13 +18,13 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping("/{id}")
-    public PostResponse get(@PathVariable("id") UUID id)
+    public ResponseEntity<PostResponse> get(@PathVariable("id") UUID id)
     {
-        return postService.getPostById(id);
+        return ResponseEntity.ok(postService.getPostById(id));
     }
 
     @PostMapping
-    public PostResponse create(@Dto(CreatePostDto.class) Post post) {
-        return postService.create(post);
+    public ResponseEntity<PostResponse> create(CreatePostDto post) {
+        return ResponseEntity.ok(postService.create(post));
     }
 }

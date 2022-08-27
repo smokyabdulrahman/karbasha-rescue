@@ -1,14 +1,12 @@
 package com.karbasha.rescue.data.entities.user;
 
 import com.karbasha.rescue.common.model.Audit;
-import com.karbasha.rescue.data.entities.pet.Pet;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -36,10 +34,6 @@ public class UserProfile extends Audit {
     private String city;
     private boolean hasKids;
     private BigDecimal monthlyIncome;
-
-    @OneToMany(fetch = FetchType.EAGER) // todo: remove this EAGER
-    @JoinColumn(name = "ownerId")
-    private List<Pet> pets;
 }
 
 

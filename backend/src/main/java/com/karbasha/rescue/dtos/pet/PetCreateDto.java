@@ -1,14 +1,12 @@
 package com.karbasha.rescue.dtos.pet;
 
 import com.karbasha.rescue.data.entities.Gender;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
-@Getter
-@Setter
+@Value
 public class PetCreateDto {
     @NotNull
     String name;

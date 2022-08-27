@@ -2,7 +2,6 @@ package com.karbasha.rescue.data.entities.pet;
 
 import com.karbasha.rescue.common.model.Audit;
 import com.karbasha.rescue.data.entities.*;
-import com.karbasha.rescue.data.entities.user.UserProfile;
 import com.vladmihalcea.hibernate.type.basic.*;
 import lombok.*;
 import org.hibernate.annotations.*;
@@ -24,10 +23,7 @@ public class Pet extends Audit {
     @Id
     @Builder.Default
     private UUID id = UUID.randomUUID();
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ownerId")
-    private UserProfile userProfile;
-    @Column(updatable = false, insertable = false)
+    @Column(nullable = false)
     private UUID ownerId;
     private String name;
     private Integer age;

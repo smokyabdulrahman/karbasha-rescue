@@ -1,5 +1,6 @@
 package com.karbasha.rescue.dtos.post;
 
+import com.karbasha.rescue.data.entities.post.*;
 import lombok.*;
 
 import java.net.*;
@@ -14,4 +15,5 @@ public class CreatePostDto {
     String description;
     URL locationUrl;
     URL imageUrl;
+    PostType type;
 }

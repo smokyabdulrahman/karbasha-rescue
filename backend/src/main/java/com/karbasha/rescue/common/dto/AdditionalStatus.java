@@ -13,6 +13,5 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @EqualsAndHashCode
 public abstract class AdditionalStatus {
-    @Getter
     MeaningfulError meaningfulError;
 }

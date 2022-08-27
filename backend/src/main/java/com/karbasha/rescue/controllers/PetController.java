@@ -6,6 +6,8 @@ import com.karbasha.rescue.dtos.pet.PetUpdateDto;
 import com.karbasha.rescue.services.*;
 import com.karbasha.rescue.util.Dto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.*;
+import org.springframework.security.access.prepost.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("pet")
 @RequiredArgsConstructor
-//@PreAuthorize("hasRole('user')")
+@PreAuthorize("hasRole('user')")
 public class PetController {
 
     private final PetService petService;
@@ -30,8 +32,8 @@ public class PetController {
     }
 
     @PostMapping
-    public Pet create(@Dto(PetCreateDto.class) Pet pet) {
-        return petService.create(pet);
+    public ResponseEntity<Pet> create(@RequestBody PetCreateDto pet) {
+        return ResponseEntity.ok(petService.create(pet));
     }
 
     @PutMapping
