@@ -17,6 +17,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Getter
+@Setter
 @TypeDef(name = "gender_type", typeClass = PostgreSQLEnumType.class)
 public class Pet extends Audit {
     @Id
